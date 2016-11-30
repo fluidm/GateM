@@ -1,0 +1,46 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.js"></script>
+
+<script>
+//var socket = io('https://dev13-futureworld-aws.isdev.info', {path: '/_ws'});
+var socket = io('http://layer.docker', {
+    path: '/_ws'
+});
+
+
+socket.on('connect', function () {
+    console.log('Connected!');
+
+    socket.emit('authenticate', {
+        token: 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXUyJ9.eyJleHAiOjE1MDk3MjQzODAsInVzZXJuYW1lIjoidGVzdDFAdGVzdC5jb20iLCJpYXQiOiIxNDc4MTg4MzgwIn0.dt8XQjB7ns2rccurkGt-RgfXkPw-3DCtw4z0vqfqouE9dx1DUmKmBQ5fNJVEROiDudX7-vA89fqciQ8_sAcR-dntBgrSloJCCQY_r6GYfqcDplGxg8RAoBPLb2VmQDsg9suQZm0EAbzZaBgCgMnqjT7DP3m9OPmCjIMmTDZY4DN-F6-CGCpaCsElJ7uXHDN-ssVv_UyvsEUjdISVbX2Y2de0YmrZ09rbRw2a7yMCaj5u1LLPvBd0wJtJfdBA7OWIDvBPnZYihcd4JBmse0vo_5bTylJ2bFYWacCLmRjtHVZbt61v3cCQfUCqUPj0eCe8aTqOsv5OLN3sa4FqS15K7ZqUYIyPyJRW0qoCqxS0AlRtmUg1g0U7xfbwsBj9enQApWoOwrhZ23hR0xDLXu6vNwNcq-j18vrfg6QTefwdf6XB-occlPuiflDOjDO_xLXpuS-_8Xycx2NT2TyWmorTwMU9RDLR2W7In3F_HPdpqPgyfRkIMPr6XuQiHyfYLC1WTohn1pSNW1Nw5xhiGQ7V_6hlwHLUItpbS8TatnlS3IwYbiuON9RRwMGXHtxP6tTdQ1NJ1bH4oHYzTVXssRZ97C43FIj3hZACRpBRmCtYsClrcYcKPv9TrFJT-CShQIKOi8RtynNMkmQxxBTwHj0qVJR6cQg4rZWF5hwcphXKbWI'
+    });
+});
+
+socket.on('notification', function (data) {
+    console.log(data);
+});
+
+
+//socket.on('unread_changed', function (data) {
+//    console.log('unread_changed', data);
+//});
+//
+//socket.on('conversation_updated', function (data) {
+//    console.log('conversation_updated', data);
+//});
+//
+//var r = { event:
+//{ id: 'e86695f1-33bd-4444-a874-cd13f043d3b9',
+//    type: 'conversation.created',
+//    created_at: '2016-09-25T18:26:35.253Z' },
+//    config: { name: 'WebHook Handler: https://dev1-futureworld-aws.isdev.info/_layer/webhooks' },
+//    conversation:
+//    { id: "layer:///conversations/614d58b7-5fcd-46a8-a0db-1186bda3674e",
+//        url: 'https://api.layer.com/apps/ac19d452-661f-11e6-ad08-89e7000000b6/conversations/10da1d99-a993-4437-b3b4-166c9e5c4bfb',
+//        messages_url: 'https://api.layer.com/apps/ac19d452-661f-11e6-ad08-89e7000000b6/conversations/10da1d99-a993-4437-b3b4-166c9e5c4bfb/messages',
+//        created_at: '2016-09-25T18:26:35.220Z',
+//        participants:
+//            [ '6d729869-004d-4ed1-8a7a-ca086e66510e',
+//                'aea1cb18-1069-4737-ac61-1fbab667f9bc' ],
+//        distinct: false,
+//        metadata: { type: 'chat' } } }
+</script>

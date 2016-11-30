@@ -1,0 +1,10 @@
+version: "2"
+
+services:
+  app:
+    volumes:
+      - './../../:/usr/src/app'
+    command: [node_modules/.bin/nodemon, ./scripts/server.js]
+#    command: [node, ./scripts/migrate.js]
+    ports:
+      - 5000:5000

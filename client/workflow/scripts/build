@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -e
+
+export COMPOSE_FILE=workflow/docker/docker-compose.yml:workflow/docker/docker-compose.prod.yml
+docker-compose build --force-rm
+## Spooky bash hack for getting all images built by docker-compose
+images=$(docker-compose config | grep -o 'image:.*' | cut -d" " -f2)
+for image in $images; do
+    echo "pushing image: $image"
+    docker push $image
+done
