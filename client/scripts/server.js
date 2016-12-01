@@ -1,13 +1,22 @@
+const socket = require('socket.io-client')('https://194c01b8.ngrok.io', {path: '/_ws'});
+const uuid = require('node-uuid').v4();
+const request = require('request');
 
-var socket = require('socket.io-client')('http://1988b1f7.ngrok.io', {path: '/_ws'});
-socket.on('connect', function(conn) {
-    socket.emit('my other event', {test: "test"});
 
+socket.on('connect', function() {
+    console.log('Connected!');
+    socket.emit('register', {id: uuid, domain: "test"});
 });
 
-// socket.on('news', function(data){
-//     console.log(data);
-// });
-// socket.on('disconnect', function(){
-//     console.log('disconnected!');
-// });
+socket.on('request', function (data) {
+    console.log(data);
+    request(data.options, function (error, response, body) {
+        console.log(response.headersObj);
+        socket.emit('response', {
+            id: data.id,
+            status: response.statusCode,
+            header: response.headers,
+            body: body
+        });
+    });
+});
